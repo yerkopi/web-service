@@ -1,0 +1,29 @@
+{
+  "name": "yerkopi-web-service",
+  "version": "1.0.0",
+  "description": "yerkopi-web-service",
+  "main": "sv.js",
+  "scripts": {
+    "start": "node sv.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/illegal-instruction-co/web.git"
+  },
+  "keywords": [
+    "web"
+  ],
+  "author": "illegal-instruction-co",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/illegal-instruction-co/web/issues"
+  },
+  "homepage": "https://github.com/illegal-instruction-co/web#readme",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "systeminformation": "^5.18.15",
+    "uuid": "^9.0.0"
+  }
+}

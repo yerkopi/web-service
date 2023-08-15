@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+  <head>
+    <title>illegal-instruction | blog</title>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/huh.png" type="image/png" sizes="16x16">
+    <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@5.0.15/dark.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/theme" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div id="header"></div>
+      <div id="content"></div>
+      <div id="footer"></div>
+    </div>
+    <script type="text/javascript" src="/script"></script>
+    <script type="text/javascript">
+      const apiUrl = "https://api.github.com/users/illegal-instruction-co/gists"
+      let loadedCount = 0
+      let totalGists = 0
+      let content = ""
+      
+      const loadGistContent = (gist) => {
+          $.ajax({
+              url: gist.files.blog.raw_url,
+              type: "GET",
+              dataType: "text",
+              success: function (dataBlog) {
+                  content += "<div class='blog'>"
+                  content += "<h2>" + gist.description + "</h2>"
+                  content += "<span> Created at: " + Date(gist.created_at).toString() + "</span>"
+                  content += " | "
+                  content += "<span> Updated at: " + Date(gist.updated_at).toString() + "</span>"
+                  content += "<hr />"
+                  content += "<p>" + dataBlog + "</p>"
+                  content += "<hr />"
+                  content += "<a href='" + gist.html_url + "'>View on Github</a>"
+                  content += "</div>"
+      
+                  loadedCount++
+      
+                  if (loadedCount === totalGists)
+                      $("#content").html(content)
+              },
+              error: function (error) {
+                  console.log(error)
+                  loadedCount++
+                  if (loadedCount === totalGists)
+                      $("#content").html(content)
+              },
+          })
+      }
+      
+      $.ajax({
+          url: apiUrl,
+          type: "GET",
+          dataType: "json",
+          success: function (data) {
+              totalGists = data.length
+              const gistsToLoad = 3
+      
+              for (let i = 0; i < gistsToLoad && i < totalGists; i++) 
+                  loadGistContent(data[i]);
+          },
+          error: function (error) {
+              console.log(error);
+          },
+      })
+      
+      $(window).on("scroll", function () {
+          if ($(window).scrollTop() + $(window).height() >= $(document).height() - 300) {
+              const remainingGists = totalGists - loadedCount
+              const gistsToLoad = 3
+      
+              for (let i = loadedCount; i < loadedCount + gistsToLoad && i < totalGists; i++)
+                  loadGistContent(data[i])
+          }
+      })
+    </script>
+  </body>
+</html>
