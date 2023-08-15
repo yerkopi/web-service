@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+  <head>
+    <title>illegal-instruction | yerkopi</title>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/huh.png" type="image/png" sizes="16x16">
+    <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@5.0.15/dark.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/theme" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div id="header"></div>
+      <div id="content">
+        <p> yerkopi server </p>
+        <div class="chart-container system-info" style="position: relative; width:80vw">
+          <div id="systemInfo"></div>
+          <div id="cpuTemp"></div>
+        </div>
+        <div class="chart-container" style="position: relative; height:40vh; width:80vw">
+          <canvas id="memoryChart"></canvas>
+        </div>
+        <div class="chart-container" style="position: relative; height:40vh; width:80vw">
+          <canvas id="cpuChart"></canvas>
+        </div>
+      </div>
+      <div id="footer"></div>
+    </div>
+    <script type="text/javascript" src="/script"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+          
+          const key = '{{ THE KEY }}'
+          
+          $.ajax({
+              url: '/system' + (key ? '?k=' + key : ''),
+              success: function(data) {
+                  var systemInfo = '<ul>'
+                  systemInfo += '<li>manufacturer: ' + data.system.manufacturer + '</li>'
+                  systemInfo += '<li>model: ' + data.system.model + '</li>'
+                  systemInfo += '<li>version: ' + data.system.version + '</li>'
+                  systemInfo += '<li>cpu Temp: ' + data.cpuTemp + '</li>'
+                  systemInfo += '</ul>'
+                  $('#systemInfo').html(systemInfo)
+              }
+          })
+      
+          $.ajax({
+              url: '/cpu' + (key ? '?k=' + key : ''),
+              success: function(data) {
+                  var cacheData = {
+                      labels: ["l1 data cache", "l1 instruction cache", "l2 cache"],
+                      datasets: [{
+                          label: 'cache size (kb)',
+                          data: [
+                              data.cache.l1d / 1024,
+                              data.cache.l1i / 1024,
+                              data.cache.l2 / 1024,
+                          ],
+                          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                          borderColor: 'rgba(75, 192, 192, 1)',
+                          borderWidth: 1,
+                          fill: true,
+                      }]
+                  }
+      
+                  var cacheChartOptions = {
+                      responsive: true,
+                      maintainAspectRatio: false,
+                      scales: {
+                          y: {
+                              beginAtZero: true,
+                              title: {
+                                  display: true,
+                                  text: 'cache size (kb)'
+                              }
+                          },
+                          x: {
+                              title: {
+                                  display: true,
+                                  text: 'cache types'
+                              }
+                          }
+                      }
+                  }
+      
+                  var ctx = document.getElementById('cpuChart').getContext('2d')
+                  new Chart(ctx, {
+                      type: 'bar',
+                      data: cacheData,
+                      options: cacheChartOptions
+                  })
+              }
+          });
+      
+          $.ajax({
+              url: '/mem' + (key ? '?k=' + key : ''),
+              success: function(data) {
+                  var memoryData = {
+                      labels: ['Free Mem', 'Used Mem'],
+                      datasets: [{
+                          data: [
+                              data.free / 1024 / 1024,
+                              data.used / 1024 / 1024,
+                          ],
+                          backgroundColor: [
+                              'rgba(75, 192, 192, 0.2)',
+                              'rgba(255, 99, 132, 0.2)',
+                          ],
+                          borderColor: [
+                              'rgba(75, 192, 192, 1)',
+                              'rgba(255, 99, 132, 1)',
+                          ],
+                          borderWidth: 1,
+                      }]
+                  }
+      
+                  var memoryChartOptions = {
+                      responsive: true,
+                      maintainAspectRatio: false,
+                      plugins: {
+                          legend: {
+                              position: 'bottom',
+                          },
+                      }
+                  }
+      
+                  var ctx = document.getElementById('memoryChart').getContext('2d');
+                  new Chart(ctx, {
+                      type: 'pie',
+                      data: memoryData,
+                      options: memoryChartOptions,
+                  })
+              
+              }
+          })
+      })
+    </script>
+  </body>
+</html>

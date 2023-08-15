@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+  <head>
+    <title>illegal-instruction | home</title>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/assets/huh.png" type="image/png" sizes="16x16">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@5.0.15/dark.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/theme" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown.js/0.5.0/markdown.min.js" integrity="sha512-kaDP6dcDG3+X87m9SnhyJzwBMKrYnd2tLJjGdBrZ9yEL8Zcl2iJRsPwylLkbd2g3QC5S8efV3sgwI5r73U0HnA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </head>
+  <body>
+    TEST
+    <div class="container">
+      <div id="header"></div>
+      <h1>abt</h1>
+      <img id="pp" src="/assets/huh.png" alt="PP" />
+      <p id="content"></p>
+      <p>socials: </p>
+      <ul id="socials">
+      </ul>
+      <div id="footer"></div>
+    </div>
+    <script type="text/javascript" src="/script"></script>
+    <script type= "text/javascript">
+      const content = 'https://raw.githubusercontent.com/illegal-instruction-co/illegal-instruction-co/main/README.md'
+      const social = [
+          {
+              name: 'github',
+              url: 'https://github.com/illegal-instruction-co',
+              icon: 'fa-brands fa-github'
+          }
+      ]
+      
+      $(document).ready(function() {
+          $('#content').html('')
+          $.ajax({
+              url: content,
+              success: function(data) {
+                  var lines = data.split('\n')
+                  for(var i = 0;i < lines.length;i++) {
+                      lines[i] = lines[i].trim()
+                      lines[i] = lines[i].toLowerCase()
+          
+                      if(lines[i].indexOf('<') == -1)
+                          $('#content').append(markdown.toHTML(lines[i]))
+                      else
+                          $('#content').append(lines[i] + "&nbsp;")
+                  }
+              }
+          })
+      
+          social.forEach(function(item) {
+              $('#socials').append(`<li><i class="${item.icon}"></i> <a href="${item.url}">${item.name}</a></li>`)
+          })
+      })
+    </script>
+  </body>
+</html>
