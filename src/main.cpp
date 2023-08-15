@@ -1,9 +1,9 @@
-#include <iostream>
+#include <spdlog/spdlog.h>
 
 int main() {
-    using namespace std;
+    using namespace spdlog;
 
-    cout << "web service" << endl;
+    info("WEB-SERVICE INITIALIZING");
 
     return 0;
 }

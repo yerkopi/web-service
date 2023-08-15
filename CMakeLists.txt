@@ -15,7 +15,8 @@ set(CMAKE_CXX_FLAGS_RELEASE "-O3 -Wall -Wextra -Wpedantic -Werror")
 
 include_directories(include)
 
-add_subdirectory(components)
 add_subdirectory(vendor)
+
+add_subdirectory(components)
 add_subdirectory(src)
 add_subdirectory(tests)
