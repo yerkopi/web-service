@@ -1,3 +1,6 @@
 [submodule "vendor/spdlog"]
 	path = vendor/spdlog
 	url = https://github.com/gabime/spdlog.git
+[submodule "vendor/restbed"]
+	path = vendor/restbed
+	url = https://github.com/Corvusoft/restbed
