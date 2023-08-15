@@ -3,7 +3,7 @@
 int main() {
     using namespace std;
 
-    cout << "yerkopi service" << endl;
+    cout << "web service" << endl;
 
     return 0;
 }
