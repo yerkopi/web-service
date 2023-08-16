@@ -15,7 +15,24 @@
       <div id="content">
         <p> yerkopi server </p>
         <div class="chart-container system-info" style="position: relative; width:80vw">
-          <div id="systemInfo"></div>
+          <table id="system" border="1" >
+              <caption>Processes</caption>
+              <thead>
+                <tr>
+                  <th>Manufacturer</th>
+                  <th>Model</th>
+                  <th>Version</th>
+                  <th>Cpu Temp</th>
+                  <th>Platform</th>
+                  <th>Distro</th>
+                  <th>Release</th>
+                  <th>Kernel</th>
+                  <th>Arch</th>
+                  <th>Hostname</th>
+                </tr>
+              </thead>
+            <tbody></tbody>
+          </table>
           <div id="cpuTemp"></div>
         </div>
         <div class="chart-container" style="position: relative; height:40vh; width:80vw">
@@ -76,12 +93,20 @@
             $.ajax({
                 url: '/yerkopi/system' + (key ? '?k=' + key : ''),
                 success: function(data) {
-                    var systemInfo = '<ul>'
-                    systemInfo += '<li>manufacturer: ' + data.system.manufacturer + '</li>'
-                    systemInfo += '<li>model: ' + data.system.model + '</li>'
-                    systemInfo += '<li>version: ' + data.system.version + '</li>'
-                    systemInfo += '<li>cpu Temp: ' + data.cpuTemp + '</li>'
-                    systemInfo += '</ul>'
+                    $('#system tbody').empty();
+                    var row = $('<tr>')
+                    row.append($('<td>').text(data.system.manufacturer))
+                    row.append($('<td>').text(data.system.model))
+                    row.append($('<td>').text(data.system.version))
+                    row.append($('<td>').text(data.system.cpuTemp))
+                    row.append($('<td>').text(data.os.platform))
+                    row.append($('<td>').text(data.os.distro))
+                    row.append($('<td>').text(data.os.release))
+                    row.append($('<td>').text(data.os.kernel))
+                    row.append($('<td>').text(data.os.arch))
+                    row.append($('<td>').text(data.os.hostname))
+                    $('#system tbody').append(row)
+
                     $('#systemInfo').html(systemInfo)
 
                     var cacheData = {
