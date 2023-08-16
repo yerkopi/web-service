@@ -73,26 +73,23 @@ span {
     background-color: #1f4e4e;
 }
 
-.system-info {
-    margin: 20px;
-}
-#systemInfo {
+#system {
     width: 100%;
     border-collapse: collapse;
     border: 1px solid #ddd;
 }
-#systemInfo th {
+#system th {
     background-color: #153737;
     padding: 10px;
     text-align: left;
 }
-#systemInfo td {
+#system td {
     padding: 8px;
     border: 1px solid #ddd;
 }
-#systemInfo tr:nth-child(even) {
+#system tr:nth-child(even) {
     background-color: #153737;
 }
-#systemInfo tr:hover {
+#system tr:hover {
     background-color: #1f4e4e;
 }
