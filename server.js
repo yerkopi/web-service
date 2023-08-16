@@ -61,7 +61,10 @@ const keyMiddleware = (req, res, next) => {
  * Get system information
  */
 app.get('/yerkopi/ps', keyMiddleware, (req, res) => {
-    si.processes().then(data => res.send(data))
+    si.processes().then(data => {
+        data.list = data.list.filter(process => process.name !== 'sleep')
+        res.send(data)
+    })
 })
 
 app.get('/yerkopi/system', keyMiddleware, (req, res) => {
