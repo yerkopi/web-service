@@ -15,7 +15,7 @@
       <div id="content">
         <p> yerkopi server </p>
         <div class="chart-container system-info" style="position: relative; width:80vw">
-          <table id="system" border="1" >
+          <table id="systemInfo" border="1" >
               <caption>Processes</caption>
               <thead>
                 <tr>
@@ -93,7 +93,7 @@
             $.ajax({
                 url: '/yerkopi/system' + (key ? '?k=' + key : ''),
                 success: function(data) {
-                    $('#system tbody').empty();
+                    $('#systemInfo tbody').empty();
                     var row = $('<tr>')
                     row.append($('<td>').text(data.system.manufacturer))
                     row.append($('<td>').text(data.system.model))
