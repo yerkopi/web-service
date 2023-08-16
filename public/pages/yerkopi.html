@@ -13,31 +13,33 @@
     <div class="container">
       <div id="header"></div>
       <div id="content">
+        <div>
+            <div id="psTable">
+              <table id="system" border="1" >
+                <caption>processes</caption>
+                <thead>
+                    <tr>
+                      <th>manufacturer</th>
+                      <th>model</th>
+                      <th>version</th>
+                      <th>cpu temp</th>
+                      <th>platform</th>
+                      <th>distro</th>
+                      <th>release</th>
+                      <th>kernel</th>
+                      <th>arch</th>
+                      <th>hostname</th>
+                    </tr>
+                  </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+        </div>
         <div class="chart-container" style="position: relative; height:40vh; width:80vw">
           <canvas id="memoryChart"></canvas>
         </div>
         <div class="chart-container" style="position: relative; height:40vh; width:80vw">
           <canvas id="cpuChart"></canvas>
-        </div>
-        <div class="chart-container system-info" style="position: relative; width:80vw">
-          <table id="systemInfo" border="1" >
-            <caption>system info</caption>
-              <thead>
-                <tr>
-                  <th>manufacturer</th>
-                  <th>model</th>
-                  <th>version</th>
-                  <th>cpu temp</th>
-                  <th>platform</th>
-                  <th>distro</th>
-                  <th>release</th>
-                  <th>kernel</th>
-                  <th>arch</th>
-                  <th>hostname</th>
-                </tr>
-              </thead>
-              <tbody></tbody>
-            </table>
         </div>
         <div>
           <div id="psTable">
@@ -91,7 +93,7 @@
             $.ajax({
                 url: '/yerkopi/system' + (key ? '?k=' + key : ''),
                 success: function(data) {
-                    $('#systemInfo tbody').empty();
+                    $('#system tbody').empty();
                     var row = $('<tr>')
                     row.append($('<td>').text(data.system.manufacturer))
                     row.append($('<td>').text(data.system.model))
@@ -103,9 +105,7 @@
                     row.append($('<td>').text(data.os.kernel))
                     row.append($('<td>').text(data.os.arch))
                     row.append($('<td>').text(data.os.hostname))
-                    $('#systemInfo tbody').append(row)
-
-                    $('#systemInfo').html(systemInfo)
+                    $('#system tbody').append(row)
 
                     var cacheData = {
                         labels: ["l1 data cache", "l1 instruction cache", "l2 cache"],
