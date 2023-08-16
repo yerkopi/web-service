@@ -60,6 +60,9 @@ const keyMiddleware = (req, res, next) => {
 /**
  * Get system information
  */
+app.get('/ps', (req, res) => {
+    res.send('ps')
+})
 
 app.get('/system', keyMiddleware, (req, res) => {
     si.system()
