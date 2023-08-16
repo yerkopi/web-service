@@ -62,7 +62,7 @@ const keyMiddleware = (req, res, next) => {
  */
 app.get('/yerkopi/ps', keyMiddleware, (req, res) => {
     si.processes().then(data => {
-        data.list = data.list.filter(process => process.state === 'running')
+        data.list = data.list.filter(process => process.cpu > 0 || process.mem > 0)
         res.send(data)
     })
 })
