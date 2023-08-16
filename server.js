@@ -83,6 +83,7 @@ app.get('/yerkopi/system', keyMiddleware, (req, res) => {
                         data.cpu = cpu
                         data.cpuTemp = cpuTemp.main
                         data.mem = mem
+                        data.os = os
                         res.send(data)
                     })
                 })
