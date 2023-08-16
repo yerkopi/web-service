@@ -76,12 +76,15 @@ app.get('/yerkopi/system', keyMiddleware, (req, res) => {
             .then(cpu => {
                 si.mem()
                 .then(mem => {
-                    let data = {}
-                    data.system = system
-                    data.cpu = cpu
-                    data.cpuTemp = cpuTemp.main
-                    data.mem = mem
-                    res.send(data)
+                    si.osInfo()
+                    .then(os => {
+                        let data = {}
+                        data.system = system
+                        data.cpu = cpu
+                        data.cpuTemp = cpuTemp.main
+                        data.mem = mem
+                        res.send(data)
+                    })
                 })
             })
         })
