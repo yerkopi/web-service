@@ -2,9 +2,9 @@
   "name": "yerkopi-web-service",
   "version": "1.0.0",
   "description": "yerkopi-web-service",
-  "main": "sv.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node sv.js",
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

@@ -49,3 +49,26 @@ span {
     color: rgba(0, 255, 0, 0.5);
     font-size: 10px;
 }
+#psTable {
+    margin: 20px;
+}
+#ps {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+}
+#ps th {
+    background-color: #153737;
+    padding: 10px;
+    text-align: left;
+}
+#ps td {
+    padding: 8px;
+    border: 1px solid #ddd;
+}
+#ps tr:nth-child(even) {
+    background-color: #153737;
+}
+#ps tr:hover {
+    background-color: #1f4e4e;
+}

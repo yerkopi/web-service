@@ -60,33 +60,29 @@ const keyMiddleware = (req, res, next) => {
 /**
  * Get system information
  */
-app.get('/ps', (req, res) => {
-    res.send('ps')
+app.get('/yerkopi/ps', keyMiddleware, (req, res) => {
+    si.processes().then(data => res.send(data))
 })
 
-app.get('/system', keyMiddleware, (req, res) => {
+app.get('/yerkopi/system', keyMiddleware, (req, res) => {
     si.system()
     .then(system => {
         si.cpuTemperature()
         .then(cpuTemp => {
-            let data = {}
-            data.system = system
-            data.cpuTemp = cpuTemp.main
-            res.send(data)
+            si.cpu()
+            .then(cpu => {
+                si.mem()
+                .then(mem => {
+                    let data = {}
+                    data.system = system
+                    data.cpu = cpu
+                    data.cpuTemp = cpuTemp.main
+                    data.mem = mem
+                    res.send(data)
+                })
+            })
         })
     })
-})
-
-app.get('/cpu', keyMiddleware, (req, res) => {
-    si.cpu()
-    .then(data => res.send(data))
-    .catch(error => res.send(error))
-})
-
-app.get('/mem', keyMiddleware, (req, res) => {
-    si.mem()
-    .then(data => res.send(data))
-    .catch(error => res.send(error))
 })
 
 /**
