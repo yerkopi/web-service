@@ -51,45 +51,26 @@ span {
 }
 #psTable {
     margin: 20px;
+    overflow-x: auto;
 }
-#ps {
+table {
     width: 100%;
     border-collapse: collapse;
     border: 1px solid #ddd;
 }
-#ps th {
+table th {
     background-color: #153737;
     padding: 10px;
     text-align: left;
+    white-space: nowrap;
 }
-#ps td {
+table td {
     padding: 8px;
     border: 1px solid #ddd;
 }
-#ps tr:nth-child(even) {
+table tr:nth-child(even) {
     background-color: #153737;
 }
-#ps tr:hover {
-    background-color: #1f4e4e;
-}
-
-#system {
-    width: 100%;
-    border-collapse: collapse;
-    border: 1px solid #ddd;
-}
-#system th {
-    background-color: #153737;
-    padding: 10px;
-    text-align: left;
-}
-#system td {
-    padding: 8px;
-    border: 1px solid #ddd;
-}
-#system tr:nth-child(even) {
-    background-color: #153737;
-}
-#system tr:hover {
+table tr:hover {
     background-color: #1f4e4e;
 }
