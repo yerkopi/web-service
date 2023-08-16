@@ -13,48 +13,46 @@
     <div class="container">
       <div id="header"></div>
       <div id="content">
-        <p> yerkopi server </p>
-        <div class="chart-container system-info" style="position: relative; width:80vw">
-          <table id="systemInfo" border="1" >
-              <caption>Processes</caption>
-              <thead>
-                <tr>
-                  <th>Manufacturer</th>
-                  <th>Model</th>
-                  <th>Version</th>
-                  <th>Cpu Temp</th>
-                  <th>Platform</th>
-                  <th>Distro</th>
-                  <th>Release</th>
-                  <th>Kernel</th>
-                  <th>Arch</th>
-                  <th>Hostname</th>
-                </tr>
-              </thead>
-            <tbody></tbody>
-          </table>
-          <div id="cpuTemp"></div>
-        </div>
         <div class="chart-container" style="position: relative; height:40vh; width:80vw">
           <canvas id="memoryChart"></canvas>
         </div>
         <div class="chart-container" style="position: relative; height:40vh; width:80vw">
           <canvas id="cpuChart"></canvas>
         </div>
+        <div class="chart-container system-info" style="position: relative; width:80vw">
+          <table id="systemInfo" border="1" >
+            <caption>system info</caption>
+              <thead>
+                <tr>
+                  <th>manufacturer</th>
+                  <th>model</th>
+                  <th>version</th>
+                  <th>cpu temp</th>
+                  <th>platform</th>
+                  <th>distro</th>
+                  <th>release</th>
+                  <th>kernel</th>
+                  <th>arch</th>
+                  <th>hostname</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+        </div>
         <div>
           <div id="psTable">
             <table id="ps" border="1" >
-              <caption>Processes</caption>
+              <caption>processes</caption>
               <thead>
                 <tr>
-                  <th>PID</th>
-                  <th>Name</th>
-                  <th>CPU</th>
+                  <th>pid</th>
+                  <th>name</th>
+                  <th>cpu</th>
                   <th>Memory</th>
-                  <th>Priority</th>
-                  <th>User</th>
-                  <th>Command</th>
-                  <th>State</th>
+                  <th>priority</th>
+                  <th>user</th>
+                  <th>command</th>
+                  <th>state</th>
                 </tr>
               </thead>
               <tbody></tbody>
@@ -105,7 +103,7 @@
                     row.append($('<td>').text(data.os.kernel))
                     row.append($('<td>').text(data.os.arch))
                     row.append($('<td>').text(data.os.hostname))
-                    $('#system tbody').append(row)
+                    $('#systemInfo tbody').append(row)
 
                     $('#systemInfo').html(systemInfo)
 
