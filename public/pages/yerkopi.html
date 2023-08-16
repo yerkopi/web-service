@@ -32,8 +32,8 @@
                 <tr>
                   <th>PID</th>
                   <th>Name</th>
-                  <th>CPU %</th>
-                  <th>Memory %</th>
+                  <th>CPU</th>
+                  <th>Memory</th>
                   <th>Priority</th>
                   <th>User</th>
                   <th>Command</th>
@@ -62,8 +62,8 @@
                         var row = $('<tr>')
                         row.append($('<td>').text(data[i].pid))
                         row.append($('<td>').text(data[i].name))
-                        row.append($('<td>').text(data[i].cpu))
-                        row.append($('<td>').text(data[i].mem))
+                        row.append($('<td>').text(data[i].cpu + '%'))
+                        row.append($('<td>').text(data[i].mem + '%'))
                         row.append($('<td>').text(data[i].priority))
                         row.append($('<td>').text(data[i].user))
                         row.append($('<td>').text(data[i].command))
