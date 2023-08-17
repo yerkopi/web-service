@@ -23,7 +23,7 @@ app.post(`/${dotenv.config().parsed.WEB_SERVICE_WEBHOOK_LINK}`, (req, res) => {
     console.log('git pull request received')
     res.send('git pull request received')
     const { exec } = require('child_process');
-    exec(`sudo systemctl daemon-reload`, (err, stdout, stderr) => {
+    exec(`systemctl daemon-reload`, (err, stdout, stderr) => {
         if (err) {
             console.error(err);
             return
@@ -41,7 +41,7 @@ app.post(`/${dotenv.config().parsed.TALKSENSE_SERVICE_WEBHOOK_LINK}`, (req, res)
             console.error(err);
             return
         }
-        exec(`sudo systemctl restart yerkopi-talksense.service`, (err, stdout, stderr) => {
+        exec(`systemctl restart yerkopi-talksense.service`, (err, stdout, stderr) => {
             if (err)
                 console.error(err);
         })
