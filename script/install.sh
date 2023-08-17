@@ -4,6 +4,8 @@ DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
 source "$DIR/../.env"
 
+git config --global --add safe.directory "$SERVICE_DIR"
+
 systemctl disable "$SERVICE_NAME"
 systemctl stop "$SERVICE_NAME"
 
