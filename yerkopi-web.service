@@ -4,8 +4,8 @@ After=network.target
 
 [Service]
 User=root
-Environment="PATH=/home/dietpi/Desktop/yerkopi/web-service:/usr/bin:/usr/local/bin"
-WorkingDirectory=/home/dietpi/Desktop/yerkopi/web-service
+Environment="PATH=/home/dietpi/yerkopi/web-service:/usr/bin:/usr/local/bin"
+WorkingDirectory=/home/dietpi/yerkopi/web-service
 ExecStartPre=/usr/bin/bash script/update.sh
 ExecStart=node server.js
 Restart=on-failure
