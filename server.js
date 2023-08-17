@@ -19,9 +19,7 @@ let key = {}
 /**
  * Pull updates from github
  */
-console.log(`Webhook route: POST /${dotenv.config().parsed.GITHUB_WEBHOOK_LINK}`)
-
-app.post(`/${dotenv.config().parsed.GITHUB_WEBHOOK_LINK}`, (req, res) => {
+app.post(`/${dotenv.config().parsed.WEB_SERVICE_WEBHOOK_LINK}`, (req, res) => {
     console.log('git pull request received')
     res.send('git pull request received')
     const { exec } = require('child_process');
@@ -31,6 +29,22 @@ app.post(`/${dotenv.config().parsed.GITHUB_WEBHOOK_LINK}`, (req, res) => {
             return
         }
         process.exit(1)
+    })
+})
+
+app.post(`/${dotenv.config().parsed.TALKSENSE_SERVICE_WEBHOOK_LINK}`, (req, res) => {
+    console.log('git pull request received')
+    res.send('git pull request received')
+    const { exec } = require('child_process');
+    exec(`systemctl daemon-reload`, (err, stdout, stderr) => {
+        if (err) {
+            console.error(err);
+            return
+        }
+        exec(`systemctl restart talksense.service`, (err, stdout, stderr) => {
+            if (err)
+                console.error(err);
+        })
     })
 })
 
