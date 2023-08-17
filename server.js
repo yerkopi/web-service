@@ -1,10 +1,7 @@
-#! /usr/bin/env node
 /**
  * YERKOPI WEB SERVICE
  * 
  */
-
-"use strict";
 
 const express = require('express')
 const path = require('path')
