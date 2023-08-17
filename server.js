@@ -41,7 +41,7 @@ app.post(`/${dotenv.config().parsed.TALKSENSE_SERVICE_WEBHOOK_LINK}`, (req, res)
             console.error(err);
             return
         }
-        exec(`systemctl restart talksense.service`, (err, stdout, stderr) => {
+        exec(`systemctl restart yerkopi-talksense.service`, (err, stdout, stderr) => {
             if (err)
                 console.error(err);
         })
