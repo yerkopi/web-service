@@ -98,19 +98,21 @@
             $.ajax({
                 url: '/yerkopi/system' + (key ? '?k=' + key : ''),
                 success: function(data) {
-                    $('#system tbody').empty();
-                    var row = $('<tr>')
-                    row.append($('<td>').text(data.system.manufacturer))
-                    row.append($('<td>').text(data.system.model))
-                    row.append($('<td>').text(data.system.version))
-                    row.append($('<td>').text(data.cpuTemp))
-                    row.append($('<td>').text(data.os.platform))
-                    row.append($('<td>').text(data.os.distro))
-                    row.append($('<td>').text(data.os.release))
-                    row.append($('<td>').text(data.os.kernel))
-                    row.append($('<td>').text(data.os.arch))
-                    row.append($('<td>').text(data.os.hostname))
-                    $('#system tbody').append(row)
+                    $('#system tbody').empty()
+                    for (var i = 0; i < data.system.length; i++) {
+                        $('#system').DataTable().row.add([
+                            data.system[i].manufacturer,
+                            data.system[i].model,
+                            data.system[i].version,
+                            data.cpuTemp,
+                            data.os.platform,
+                            data.os.distro,
+                            data.os.release,
+                            data.os.kernel,
+                            data.os.arch,
+                            data.os.hostname,
+                        ]).draw(true)
+                    }
 
                     var cacheData = {
                         labels: ["l1 data cache", "l1 instruction cache", "l2 cache"],
