@@ -79,21 +79,18 @@
                 success: function(data) {
                     $('#ps tbody').empty();
                     data = data.list
-                    
-                    $("#ps").DataTable().clear().draw();
-                    $("#ps").DataTable().rows.add(data).draw();
-                    
+
                     for (var i = 0; i < data.length; i++) {
-                        var row = $('<tr>')
-                        row.append($('<td>').text(data[i].pid))
-                        row.append($('<td>').text(data[i].name))
-                        row.append($('<td>').text(data[i].cpu + '%'))
-                        row.append($('<td>').text(data[i].mem + '%'))
-                        row.append($('<td>').text(data[i].priority))
-                        row.append($('<td>').text(data[i].user))
-                        row.append($('<td>').text(data[i].command))
-                        row.append($('<td>').text(data[i].state))
-                        $('#ps tbody').append(row)
+                        $('#ps').DataTable().row.add([
+                            data[i].pid,
+                            data[i].name,
+                            data[i].cpu + '%',
+                            data[i].mem + '%',
+                            data[i].priority,
+                            data[i].user,
+                            data[i].command,
+                            data[i].state,
+                        ]).draw(true)
                     }
                 }
             })
