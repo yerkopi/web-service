@@ -69,15 +69,16 @@
     <script type="text/javascript" src="/script"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#system').DataTable();
-            $('#ps').DataTable();
+
+           // $('#system').DataTable()
+            $('#ps').DataTable()
 
             const key = '{{ THE KEY }}'
 
             $.ajax({
                 url: '/yerkopi/ps' + (key ? '?k=' + key : ''),
                 success: function(data) {
-                    $('#ps tbody').empty();
+                    $('#ps tbody').empty()
                     data = data.list
 
                     for (var i = 0; i < data.length; i++) {
@@ -186,7 +187,7 @@
                         }
                     }
 
-                    var ctx = document.getElementById('memoryChart').getContext('2d');
+                    var ctx = document.getElementById('memoryChart').getContext('2d')
                     new Chart(ctx, {
                         type: 'pie',
                         data: memoryData,
