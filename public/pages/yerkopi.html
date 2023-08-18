@@ -4,10 +4,12 @@
     <meta charset="utf-8" />
     <link rel="icon" href="/huh.png" type="image/png" sizes="16x16">
     <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@5.0.15/dark.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
     <link rel="stylesheet" href="/theme" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
   </head>
   <body>
     <div class="container">
@@ -67,6 +69,8 @@
     <script type="text/javascript" src="/script"></script>
     <script type="text/javascript">
         $(document).ready(function() {
+            $('#system').DataTable();
+            $('#ps').DataTable();
 
             const key = '{{ THE KEY }}'
 
