@@ -75,18 +75,18 @@
                 url: '/yerkopi/ps' + (key ? '?k=' + key : ''),
                 success: function(data) {
                     $('#ps tbody').empty()
-                    data = data.list
-
-                    $('#ps').DataTable().row.add([
-                      data[i].pid,
-                      data[i].name,
-                      data[i].cpu + '%',
-                      data[i].mem + '%',
-                      data[i].priority,
-                      data[i].user,
-                      data[i].command,
-                      data[i].state,
-                    ]).draw(true)
+                    for (var i = 0; i < data.list.length; i++) {
+                        $('#ps').DataTable().row.add([
+                          data.list[i].pid,
+                          data.list[i].name,
+                          data.list[i].cpu + '%',
+                          data.list[i].mem + '%',
+                          data.list[i].priority,
+                          data.list[i].user,
+                          data.list[i].command,
+                          data.list[i].state,
+                        ]).draw(true)
+                    }
                 }
             })
 
