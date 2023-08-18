@@ -1,4 +1,4 @@
 #!/bin/bash
 
 git pull
-npm install -f
+sudo npm install
