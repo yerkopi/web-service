@@ -79,6 +79,10 @@
                 success: function(data) {
                     $('#ps tbody').empty();
                     data = data.list
+                    
+                    $("#ps").DataTable().clear().draw();
+                    $("#ps").DataTable().rows.add(data).draw();
+                    
                     for (var i = 0; i < data.length; i++) {
                         var row = $('<tr>')
                         row.append($('<td>').text(data[i].pid))
