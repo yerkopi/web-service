@@ -78,16 +78,7 @@
                     data = data.list
 
                     for (var i = 0; i < data.length; i++) {
-                        $('#ps').DataTable().row.add([
-                            data[i].pid,
-                            data[i].name,
-                            data[i].cpu + '%',
-                            data[i].mem + '%',
-                            data[i].priority,
-                            data[i].user,
-                            data[i].command,
-                            data[i].state,
-                        ]).draw(true)
+           
                     }
                 }
             })
@@ -97,7 +88,18 @@
                 success: function(data) {
                     $('#system tbody').empty()
                     for (var i = 0; i < data.system.length; i++) {
-                        
+                        $('#system').DataTable().row.add([
+                            data.system[i].manufacturer,
+                            data.system[i].model,
+                            data.system[i].version,
+                            data.cpuTemp,
+                            data.os.platform,
+                            data.os.distro,
+                            data.os.release,
+                            data.os.kernel,
+                            data.os.arch,
+                            data.os.hostname,
+                        ]).draw(true)
                     }
 
                     var cacheData = {
