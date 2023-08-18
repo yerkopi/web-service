@@ -94,20 +94,19 @@
                 url: '/yerkopi/system' + (key ? '?k=' + key : ''),
                 success: function(data) {
                     $('#system tbody').empty()
-                    for (var i = 0; i < data.system.length; i++) {
-                      $('#system').DataTable().row.add([
-                          data.system.manufacturer,
-                          data.system.model,
-                          data.system.version,
-                          data.cpuTemp,
-                          data.os.platform,
-                          data.os.distro,
-                          data.os.release,
-                          data.os.kernel,
-                          data.os.arch,
-                          data.os.hostname,
-                      ]).draw(true)
-                    }
+                    $('#system').DataTable().row.add([
+                      data.system.manufacturer,
+                      data.system.model,
+                      data.system.version,
+                      data.cpuTemp,
+                      data.os.platform,
+                      data.os.distro,
+                      data.os.release,
+                      data.os.kernel,
+                      data.os.arch,
+                      data.os.hostname,
+                    ]).draw(true)
+
 
                     var cacheData = {
                         labels: ["l1 data cache", "l1 instruction cache", "l2 cache"],
