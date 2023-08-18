@@ -69,10 +69,6 @@
     <script type="text/javascript" src="/script"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-
-           // $('#system').DataTable()
-            $('#ps').DataTable()
-
             const key = '{{ THE KEY }}'
 
             $.ajax({
@@ -101,18 +97,7 @@
                 success: function(data) {
                     $('#system tbody').empty()
                     for (var i = 0; i < data.system.length; i++) {
-                        $('#system').DataTable().row.add([
-                            data.system[i].manufacturer,
-                            data.system[i].model,
-                            data.system[i].version,
-                            data.cpuTemp,
-                            data.os.platform,
-                            data.os.distro,
-                            data.os.release,
-                            data.os.kernel,
-                            data.os.arch,
-                            data.os.hostname,
-                        ]).draw(true)
+                        
                     }
 
                     var cacheData = {
