@@ -1,3 +1,14 @@
+/**
+ * @fileoverview Routes for yerkopi.com
+ * @module components/routes
+ * @requires express
+ * @requires path
+ * @requires fs
+ * @requires systeminformation
+ * @requires dotenv
+ * @exports router
+ */
+
 const express = require('express')
 const path = require('path')
 const fs = require('fs')

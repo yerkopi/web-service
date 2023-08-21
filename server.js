@@ -1,6 +1,6 @@
 /**
- * YERKOPI WEB SERVICE
- * 
+ * @file server.js
+ * @description The main server file
  */
 
 const routes = require('./components/routes')
