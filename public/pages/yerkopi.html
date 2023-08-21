@@ -69,10 +69,8 @@
     <script type="text/javascript" src="/script"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            const key = '{{ THE KEY }}'
-
             $.ajax({
-                url: '/yerkopi/ps' + (key ? '?k=' + key : ''),
+                url: '/yerkopi/ps',
                 success: function(data) {
                     $('#ps tbody').empty()
                     for (var i = 0; i < data.list.length; i++) {
@@ -91,7 +89,7 @@
             })
 
             $.ajax({
-                url: '/yerkopi/system' + (key ? '?k=' + key : ''),
+                url: '/yerkopi/system',
                 success: function(data) {
                     $('#system tbody').empty()
                     $('#system').DataTable().row.add([

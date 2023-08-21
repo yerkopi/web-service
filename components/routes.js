@@ -115,12 +115,8 @@ router.get('/blog', (req, res) => {
 
 router.get('/yerkopi', (req, res) => {
   // TO DO: seperate yerkopi service
-  key.uuid = uuid.v4()
-  key.time = Date.now()
 
-  let index = fs.readFileSync(path.join(staticPath, 'pages/yerkopi.html'), 'utf8')
-  index = index.replace('{{ THE KEY }}', key.uuid)
-  res.send(index)
+  res.sendFile(path.join(staticPath, 'pages/yerkopi.html'))
 })
 
 router.get('*', (req, res) => {
