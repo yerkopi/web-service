@@ -3,7 +3,6 @@ const keyMiddleware = require('./middlewares.js').keyMiddleware
 const express = require('express')
 const path = require('path')
 const fs = require('fs')
-const uuid = require('uuid')
 const si = require('systeminformation')
 const dotenv = require('dotenv')
 
@@ -11,8 +10,6 @@ const router = express.Router()
 const staticPath = path.join(__dirname, '../public/')
 
 dotenv.config()
-
-let key = {}
 
 /**
  * Pull updates from github
@@ -59,14 +56,14 @@ router.use((req, res, next) => {
 /**
  * Get system information
  */
-router.get('/yerkopi/ps', keyMiddleware, (req, res) => {
+router.get('/yerkopi/ps', (req, res) => {
     si.processes().then(data => {
         data.list = data.list.filter(process => process.cpu > 0 || process.mem > 0)
         res.send(data)
     })
 })
 
-router.get('/yerkopi/system', keyMiddleware, (req, res) => {
+router.get('/yerkopi/system', (req, res) => {
     si.system()
     .then(system => {
         si.cpuTemperature()
