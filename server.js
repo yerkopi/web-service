@@ -10,8 +10,10 @@ const si = require('systeminformation')
 const uuid = require('uuid')
 const fs = require('fs')
 
+dotenv.config();
+
 const app = express()
-const port = dotenv.config().parsed.SERVER_PORT
+const port = process.env.SERVER_PORT
 const staticPath = path.join(__dirname, './public/')
 
 let key = {}
@@ -19,7 +21,7 @@ let key = {}
 /**
  * Pull updates from github
  */
-app.post(`/${dotenv.config().parsed.WEB_SERVICE_WEBHOOK_LINK}`, (req, res) => {
+app.post(`/${process.env.WEB_SERVICE_WEBHOOK_LINK}`, (req, res) => {
     console.log('git pull request received')
     res.send('git pull request received')
     const { exec } = require('child_process');
@@ -32,7 +34,7 @@ app.post(`/${dotenv.config().parsed.WEB_SERVICE_WEBHOOK_LINK}`, (req, res) => {
     })
 })
 
-app.post(`/${dotenv.config().parsed.TALKSENSE_SERVICE_WEBHOOK_LINK}`, (req, res) => {
+app.post(`/${process.env.TALKSENSE_SERVICE_WEBHOOK_LINK}`, (req, res) => {
     console.log('git pull request received')
     res.send('git pull request received')
     const { exec } = require('child_process');
@@ -63,7 +65,7 @@ app.use((req, res, next) => {
  */
 const keyMiddleware = (req, res, next) => {
     if (req.query.k === key.uuid) {
-        if (Date.now() - key.time > dotenv.config().parsed.KEY_TIMEOUT_MS)
+        if (Date.now() - key.time > process.env.KEY_TIMEOUT_MS)
             key = {}
         next()
     } else {
