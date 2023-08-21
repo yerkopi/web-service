@@ -1,5 +1,3 @@
-const keyMiddleware = require('./middlewares.js').keyMiddleware
-
 const express = require('express')
 const path = require('path')
 const fs = require('fs')
