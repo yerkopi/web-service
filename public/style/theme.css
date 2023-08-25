@@ -21,7 +21,7 @@ li {
 .container {
     margin: 0 auto;
     width: 80%;
-    border: 1px solid rgba(0, 255, 0, 0.5);
+    border: 1px solid #153737;
     padding: 10px;
 }
 a {
@@ -35,7 +35,7 @@ h1 {
     margin: 20px;
 }
 .footer {
-    border-top: 1px solid rgba(0, 255, 0, 0.5);
+    border-top: 1px solid #153737;
     text-align: center;
 }
 #pp {
@@ -47,12 +47,12 @@ h1 {
     text-align: left;
 }
 .blog {
-    border: 1px solid rgba(0, 255, 0, 0.3);
+    border: 1px solid #153737;
     padding: 10px;
     margin: 10px;
 }
 span {
-    color: rgba(0, 255, 0, 0.5);
+    color: #153737;
     font-size: 10px;
 }
 #psTable {
